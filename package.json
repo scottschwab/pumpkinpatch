@@ -1,0 +1,16 @@
+{
+  "name": "pumpkinpatch",
+  "version": "0.1.0",
+  "private": true,
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.9.0",
+    "@vue/cli-plugin-typescript": "^3.9.0",
+    "@vue/cli-plugin-unit-jest": "^3.9.0",
+    "@vue/cli-service": "^3.9.0"
+  },
+  "dependencies": {
+    "@vue/cli": "^3.9.3",
+    "@vue/cli-service-global": "^3.9.3",
+    "yarn": "^1.17.3"
+  }
+}
