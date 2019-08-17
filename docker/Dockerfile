@@ -1,0 +1,9 @@
+FROM node:10.16.3-jessie
+RUN apt update
+RUN apt install -y vim-nox
+RUN mkdir -p /home/pumpkin
+RUN npm install -g yarn 
+RUN yarn global add vue @vue/cli @vue/cli-service-global vue-material 
+EXPOSE 8080
+WORKDIR /home/pumpkin/src
+CMD /bin/bash
