@@ -3,9 +3,11 @@
 ## For Development
 
 ```
+# cd /home/scott/src/pumpkinpatch
 # cd docker
 # docker build . -t pumpkin:version
-# docker run -it -p 8080:8080 -v $PWD:/home/pumpkin/src pumpkin:version /bin/bash
+# cd ..
+# docker run -it -p 8080:8080 -v $PWD:/home/pumpkinpatch pumpkin:version /bin/bash
 ```
 
 In docker container
