@@ -35,7 +35,11 @@ export default {
   name: "Total",
   components: {},
   methods: {
-    compute_totals: function() {
+    compute_totals: function(cont) {
+      cont.update();
+    },
+    update: function() {
+      console.log("in update");
       this.pumpkin_count = 0;
       this.pumpkin_total = 0;
       this.gourd_count = 0;
@@ -44,30 +48,34 @@ export default {
       this.other_total = 0;
       this.grand_count = 0;
       this.grand_total = 0;
-      for (let entry in this.$store.state.pumpkins) {
-        this.pumpkin_count = this.pumpkin_count + entry[1];
-        this.pumpkin_total = this.pumpkin_total + entry[1] * entry[2];
-      }
-      for (let entry in this.$store.state.gourds) {
-        this.gourd_count = this.gourd_count + entry[1];
-        this.gourd_total = this.gourd_total + entry[1] * entry[2];
-      }
-      for (let entry in this.$store.state.other) {
-        this.other_count = this.other_count + entry[1];
-        this.other_total = this.other_total + entry[1] * entry[2];
+      let b = new Map(this.$store.state.invoice);
+      for (let [key, value] of b.entries()) {
+        console.log(key);
+        if (value["class"] == "pumpkin") {
+          this.pumpkin_count = this.pumpkin_count + parseInt(value["countof"]);
+          this.pumpkin_total = this.pumpkin_total + parseFloat(value["total"]);
+        } else if (value["class"] == "gourd") {
+          this.gourd_count = this.gourd_count + parseInt(value["countof"]);
+          this.gourd_total = this.gourd_total + parseFloat(value["total"]);
+        } else if (value["class"] == "other") {
+          this.other_count = this.other_count + parseInt(value["countof"]);
+          this.other_total = this.other_total + parseFloat(value["total"]);
+        }
       }
       this.grand_count =
         this.pumpkin_count + this.gourd_count + this.other_count;
       this.grand_total =
         this.pumpkin_total + this.gourd_total + this.other_total;
+      console.log(this.pumpkin_count);
     }
   },
   mounted() {
+    var self = this;
     EventBus.$on("totalchanged", function() {
-      console.log("hi");
-      this.compute_totals();
+      self.compute_totals(self);
     });
   },
+
   data: () => ({
     pumpkin_count: 0,
     pumpkin_total: 0,

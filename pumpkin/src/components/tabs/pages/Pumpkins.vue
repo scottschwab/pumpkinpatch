@@ -3,7 +3,13 @@
     <md-content class="md-scrollbar">
       <md-list>
         <md-list-item v-for="item in this.$store.state.pumpkins" :key="item">
-          <row :label="item[0]" :cost="item[1]" :countof="item[2]" />
+          <row
+            :label="item[0]"
+            :cost="item[1]"
+            :countof="item[2]"
+            prefix=" at "
+            v-on:rowchanged="onRowChange"
+          />
         </md-list-item>
       </md-list>
     </md-content>
@@ -13,12 +19,20 @@
 <script>
 // @ is an alias to /src
 import row from "@/components/row.vue";
-
+import { EventBus } from "@/main.js";
 export default {
   name: "Pumpkins",
   components: {
     row
   },
-  methods: {}
+  methods: {
+    onRowChange(values) {
+      console.log("on row change");
+      let name = "pumpkin_" + values["label"];
+      values["class"] = "pumpkin";
+      this.$store.state.invoice.set(name, values);
+      EventBus.$emit("totalchanged");
+    }
+  }
 };
 </script>

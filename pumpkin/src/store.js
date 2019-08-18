@@ -31,6 +31,7 @@ export default new Vuex.Store({
       ["large mum", 5, 0],
       ["small mum", 12, 0]
     ],
+    invoice: new Map(),
     bake_sale: 0,
     donation: 0
   },

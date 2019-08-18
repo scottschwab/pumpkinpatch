@@ -1,26 +1,31 @@
 <template>
   <div>
     <md-input v-model="countout" type="number" min="0" id="countid" @change="computetotal"></md-input>
-    <span class="filler">&nbsp;@&nbsp;</span>
+    <span class="filler">{{ prefix }}</span>
     <label for="countid">{{ label }} each</label>
     <span class="rowtotal">&nbsp;is $ {{ total }}</span>
   </div>
 </template>
 
 <script>
-import { EventBus } from "@/main.js";
+//import { EventBus } from "@/main.js";
 
 export default {
   name: "row",
   props: {
     countof: { type: String, default: "0" },
     cost: { type: String, default: "0" },
-    label: { type: String, default: "n/a" }
+    label: { type: String, default: "n/a" },
+    prefix: { type: String, default: " " }
   },
   methods: {
     computetotal: function() {
       this.total = parseFloat(this.$props.cost) * parseInt(this.countout);
-      EventBus.$emit("totalchanged");
+      this.$emit("rowchanged", {
+        label: this.$props.label,
+        countof: this.countout,
+        total: this.total
+      });
     }
   },
   data() {
