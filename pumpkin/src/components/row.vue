@@ -1,14 +1,24 @@
 <template>
   <div>
-    <md-input v-model="countout" type="number" min="0" id="countid" @change="computetotal"></md-input>
-    <span class="filler">{{ prefix }}</span>
-    <label for="countid">{{ label }} each</label>
-    <span class="rowtotal">&nbsp;is $ {{ total }}</span>
+    <tr>
+      <td>
+        <vue-numeric-input v-model="countout" :min="0" :step="1" @input="computetotal"></vue-numeric-input>
+      </td>
+      <td>
+        <span class="filler">{{ prefix }}</span>
+      </td>
+      <td>
+        <span class="countid, labelcount">{{ label }}</span>
+      </td>
+      <td>
+        <span class="rowtotal, dollar">&nbsp;$ {{ total.toFixed(2) }}</span>
+      </td>
+    </tr>
   </div>
 </template>
 
 <script>
-//import { EventBus } from "@/main.js";
+import { EventBus } from "@/main.js";
 
 export default {
   name: "row",
@@ -26,7 +36,17 @@ export default {
         countof: this.countout,
         total: this.total
       });
+    },
+    resetvalue: function() {
+      this.countout = 0;
     }
+  },
+  mounted() {
+    var self = this;
+    EventBus.$on("rowreset", function() {
+      self.resetvalue();
+      self.computetotal();
+    });
   },
   data() {
     let countout = 0;
@@ -40,3 +60,6 @@ export default {
   }
 };
 </script>
+
+<style>
+</style>

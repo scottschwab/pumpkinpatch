@@ -2,7 +2,7 @@
   <div class="tab">
     <md-content class="md-scrollbar">
       <md-list>
-        <md-list-item v-for="item in this.$store.state.other" :key="item">
+        <md-list-item v-for="item in this.$store.state.other" :key="item[0]">
           <row :label="item[0]" :cost="item[1]" :countof="item[2]" v-on:rowchanged="onRowChange" />
         </md-list-item>
       </md-list>

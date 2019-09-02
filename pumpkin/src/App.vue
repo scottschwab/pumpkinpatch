@@ -27,4 +27,51 @@
 #nav a.router-link-exact-active {
   color: #42b983;
 }
+
+.paybill {
+  align-items: right;
+}
+
+.sumtotal {
+  font-size: 14pt;
+  margin-bottom: 18px;
+}
+.donation {
+  font-size: 14pt;
+  margin-bottom: 10px;
+}
+.bakesale {
+  font-size: 14pt;
+  margin-bottom: 10px;
+}
+.grandtotal {
+  font-size: 18pt;
+  font-weight: bold;
+  color: darkblue;
+}
+
+.amountdue {
+  font-size: 18pt;
+  font-weight: bold;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  margin-left: 5px;
+  color: darkred;
+}
+
+.paywrap {
+  align-content: center;
+}
+.payinside {
+  margin: 35px;
+  display: inline-block;
+}
+.paydialog {
+  width: 350px;
+  height: 550px;
+}
+
+.numinput {
+  width: 40px;
+}
 </style>

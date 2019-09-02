@@ -2,14 +2,8 @@
   <div class="tab">
     <md-content class="md-scrollbar">
       <md-list>
-        <md-list-item v-for="item in this.$store.state.pumpkins" :key="item">
-          <row
-            :label="item[0]"
-            :cost="item[1]"
-            :countof="item[2]"
-            prefix=" at "
-            v-on:rowchanged="onRowChange"
-          />
+        <md-list-item v-for="item in this.$store.state.pumpkins" :key="item[0]">
+          <row :label="item[0]" :cost="item[1]" :countof="item[2]" v-on:rowchanged="onRowChange" />
         </md-list-item>
       </md-list>
     </md-content>

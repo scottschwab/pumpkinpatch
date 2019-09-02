@@ -38,7 +38,7 @@
 
 <style lang="css" scoped>
 .md-card {
-  width: 460px;
+  width: 480px;
   height: 360px;
   margin: 4px;
   display: inline-block;
@@ -54,7 +54,7 @@ import Other from "@/components/tabs/pages/Other.vue";
 import Total from "@/components/tabs/pages/Total.vue";
 
 export default {
-  name: "StepperPage",
+  name: "CardPage",
   components: {
     Pumpkins,
     Gourds,
