@@ -6,9 +6,7 @@
 
 <script>
 // @ is an alias to /src
-import CardPage from "@/components/CardPage.vue";
-//import StepperPage from "@/components/StepperPage.vue";
-//import TabsPage from "@/components/TabsPage.vue";
+import CardPage from "./CardPage.vue";
 export default {
   name: "home",
   components: {

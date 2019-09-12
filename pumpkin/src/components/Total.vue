@@ -17,6 +17,14 @@
         <md-button class="md-primary" @click="showDialog=true">Pay</md-button>
         <md-button @click="confirmReset=true">Clear</md-button>
       </div>
+      <div class="otheroptions">
+        <div>
+          <md-button @click="deleteLastOrder=true" class="md-accent">Delete Last Order Paid</md-button>
+        </div>
+        <div>
+          <md-button @click="downloadRecords">Download Records</md-button>
+        </div>
+      </div>
     </md-content>
 
     <md-dialog :md-active.sync="showDialog" class="paydialog">
@@ -36,12 +44,7 @@
             </div>
             <div class="bakesale">
               <label>Bake Sale&nbsp;$&nbsp;</label>
-              <md-input
-                v-model="$store.state.bakesale"
-                type="number"
-                min="0"
-                @input="donation_made"
-              ></md-input>
+              <md-input v-model="$store.state.bakesale" type="number" min="0" @input="bake_sale"></md-input>
             </div>
             <div class="amountdue">
               <span>Amount Due: $ {{ this.$store.state.final_total.toFixed(2) }}</span>
@@ -81,12 +84,27 @@
       @md-confirm="resetTable"
       @md-cancel="confirmReset=false"
     />
+
+    <md-dialog-confirm
+      :md-active.sync="deleteLastOrder"
+      md-title="Delete the Previous Paid Order"
+      md-content="Are you sure you want to delete the last PAID order?"
+      md-confrim-text="Delete"
+      md-cancel-text="Cancel"
+      @md-confirm="deleteLastRecord"
+      @md-cancel="deleteLastOrder=false"
+    />
+
+    <md-snackbar :md-duration="10000" :md-active.sync="showSnackbar">
+      <span>Previous paid for order has been deleted</span>
+      <md-button @click="showSnackbar=false">Close</md-button>
+    </md-snackbar>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import { EventBus } from "@/main.js";
+import { EventBus } from "../main.js";
 
 export default {
   name: "Total",
@@ -137,7 +155,12 @@ export default {
         this.grand_total +
         parseFloat(this.$store.state.donation) +
         parseFloat(this.$store.state.bakesale);
-    }
+    },
+    deleteLastRecord: function() {
+      this.showSnackbar = true;
+      this.deleteLastOrder = false;
+    },
+    downloadRecords: function() {}
   },
   mounted() {
     var self = this;
@@ -157,7 +180,9 @@ export default {
     grand_total: 0,
 
     showDialog: false,
-    confirmReset: false
+    confirmReset: false,
+    deleteLastOrder: false,
+    showSnackbar: false
   })
 };
 </script>

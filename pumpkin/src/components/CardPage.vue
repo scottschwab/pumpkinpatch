@@ -32,6 +32,14 @@
         <Total />
       </md-card-content>
     </md-card>
+
+    <md-dialog :md-active.sync="loginDialog" class="logindialog">
+      <md-dialog-title>Login</md-dialog-title>
+      <md-input v-model="password"></md-input>
+      <div class="loginbutton">
+        <md-button class="md-primary" @click="checkLogin">Login</md-button>
+      </div>
+    </md-dialog>
   </div>
 </template>
 
@@ -48,10 +56,10 @@
 </style>
 
 <script>
-import Pumpkins from "@/components/tabs/pages/Pumpkins.vue";
-import Gourds from "@/components/tabs/pages/Gourds.vue";
-import Other from "@/components/tabs/pages/Other.vue";
-import Total from "@/components/tabs/pages/Total.vue";
+import Pumpkins from "./Pumpkins.vue";
+import Gourds from "./Gourds.vue";
+import Other from "./Other.vue";
+import Total from "./Total.vue";
 
 export default {
   name: "CardPage",
@@ -61,9 +69,26 @@ export default {
     Other,
     Total
   },
-  props: {}
+  methods: {
+    checkLogin() {
+      if (this.validLogin == this.password) {
+        this.loginDialog = false;
+      }
+    }
+  },
+
+  mounted: function() {
+    this.$nextTick(function() {
+      this.loginDialog = true;
+    });
+  },
+
+  props: {},
+
+  data: () => ({
+    loginDialog: false,
+    password: "***",
+    validLogin: "candycorn"
+  })
 };
 </script>
-
-
-

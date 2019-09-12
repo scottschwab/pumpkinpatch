@@ -12,8 +12,8 @@
 
 <script>
 // @ is an alias to /src
-import row from "@/components/row.vue";
-import { EventBus } from "@/main.js";
+import row from "./Row.vue";
+import { EventBus } from "../main.js";
 export default {
   name: "Pumpkins",
   components: {

@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import { EventBus } from "@/main.js";
+import { EventBus } from "../main.js";
 
 export default {
   name: "row",

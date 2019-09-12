@@ -11,6 +11,8 @@
   "dependencies": {
     "@vue/cli": "^3.9.3",
     "@vue/cli-service-global": "^3.9.3",
+    "webpack": "^4.39.3",
+    "webpack-cli": "^3.3.8",
     "yarn": "^1.17.3"
   }
 }
